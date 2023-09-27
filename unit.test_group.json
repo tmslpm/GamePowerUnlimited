@@ -1,0 +1,15 @@
+{
+  "groupName": "group",
+  "objectTests": [
+    {
+      "id": 0,
+      "type": "RED",
+      "score": 0
+    },
+    {
+      "id": 1,
+      "type": "YELLOW",
+      "score": 0
+    }
+  ]
+}
