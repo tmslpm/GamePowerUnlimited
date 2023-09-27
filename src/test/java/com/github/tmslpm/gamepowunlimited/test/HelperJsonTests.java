@@ -13,8 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class HelperJsonTests {
-    public static final String TEST_PATH_OUT = "unit.test.json";
-    public static final String TEST_PATH_OUT_1 = "unit.test_group.json";
+    public static final String TEST_PATH_OUT = "out/unit.test.json";
+    public static final String TEST_PATH_OUT_1 = "out/unit.test_group.json";
 
     @Test
     @DisplayName("Test method: HelperJSON.toFile, write the file with fake data")
