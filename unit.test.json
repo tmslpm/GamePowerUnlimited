@@ -1,8 +1,8 @@
 {
   "counterRound": 0,
-  "totalPiecesAdded": 0,
-  "lastPositionPieceAddedX": 4,
-  "lastPositionPieceAddedY": 15,
+  "totalPiecesAdded": 6,
+  "lastPositionPieceAddedX": 9,
+  "lastPositionPieceAddedY": 6,
   "grid": [
     [
       "BARRIER",
@@ -130,24 +130,7 @@
       "BARRIER",
       "EMPTY",
       "EMPTY",
-      "EMPTY",
-      "EMPTY",
-      "EMPTY",
-      "EMPTY",
-      "EMPTY",
-      "BARRIER",
-      "BARRIER",
-      "BARRIER",
-      "BARRIER"
-    ],
-    [
-      "BARRIER",
-      "BARRIER",
-      "BARRIER",
-      "BARRIER",
-      "EMPTY",
-      "EMPTY",
-      "EMPTY",
+      "RED",
       "EMPTY",
       "EMPTY",
       "EMPTY",
@@ -163,8 +146,25 @@
       "BARRIER",
       "BARRIER",
       "EMPTY",
+      "RED",
+      "YELLOW",
       "EMPTY",
       "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BARRIER",
+      "BARRIER",
+      "BARRIER",
+      "BARRIER"
+    ],
+    [
+      "BARRIER",
+      "BARRIER",
+      "BARRIER",
+      "BARRIER",
+      "RED",
+      "YELLOW",
+      "YELLOW",
       "EMPTY",
       "EMPTY",
       "EMPTY",
@@ -245,12 +245,12 @@
   ],
   "players": [
     {
-      "id": 0,
+      "id": 6,
       "type": "YELLOW",
       "score": 0
     },
     {
-      "id": 1,
+      "id": 7,
       "type": "RED",
       "score": 0
     }
