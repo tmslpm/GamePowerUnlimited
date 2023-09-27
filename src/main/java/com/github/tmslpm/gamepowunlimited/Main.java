@@ -40,7 +40,7 @@ public class Main {
         }
 
         if (action_github) {
-            if (position > 0) GameProcessAction.start(1);
+            if (position > 0) GameProcessAction.start(position);
             else throw new IllegalArgumentException("bad position, excepted 1 to 7");
             System.out.println("Success called main, type: Github Action (position play: " + position + ")");
         } else {
