@@ -1,34 +1,59 @@
 package com.github.tmslpm.gamepowunlimited.players;
 
+import com.github.tmslpm.gamepowunlimited.GamePowerUnlimited;
 import com.github.tmslpm.gamepowunlimited.enums.PieceType;
 
-public class Player {
-    private final int id;
-    private final PieceType type;
-    private int score;
+import java.util.Random;
 
-    public Player(PieceType type, int id) {
-        this.type = type;
-        this.id = id;
-        this.score = 0;
+public class PlayerIA extends Player {
+
+    private static final Random RNG = new Random();
+    private final transient GamePowerUnlimited gameProcess;
+
+    public PlayerIA(GamePowerUnlimited gameProcess, PieceType type) {
+        super(type);
+        this.gameProcess = gameProcess;
     }
 
-    public int getPosition() {
-        int posY = 0;
-        int precision = score * 2;
-        for (int x = 0; x < precision; x++) {
-            for (int y = 0; y < precision; y++) {
-
-            }
-        }
-        return posY;
+    /**v
+     * ---------------
+     * | | | | | | | |
+     * | | | | |x| | |
+     * | | | | |0| | |
+     * | | | | |0| | |
+     * | | | | |0| | |
+     * ---------------
+     * | | | | | | | |
+     * | | | | | | | |
+     * | | | | | | | |
+     * | | |0|0| | | |
+     * |x|0|0|0|x| | |
+     * ---------------
+     * | | | | | | | |
+     * | | | | |x| | |
+     * | | | |0|8| | |
+     * | | |0|8|0| | |
+     * | |0|8|8|0| | |
+     * @param maxY - the maximum length for the axe Y
+     * @return int position Y generated with precision or not
+     */
+    @Override
+    public int getPosition(int maxY) {
+        return PlayerIA.getRandomPosition(gameProcess);
     }
 
-    private int getId() {
-        return id;
+    public static int getRandomPosition(GamePowerUnlimited game) {
+        int lastPosY = game.getLastPositionPieceAddedY() - game.getComboLength();
+        //int precision = this.getScore() * 2;
+        final int minAxeY = 1;
+        final int maxAxeY = game.getYLength();
+        return getRandomPositionFromOtherPos(lastPosY, minAxeY, maxAxeY, 3);
     }
 
-    public PieceType getType() {
-        return this.type;
+    protected static int getRandomPositionFromOtherPos(int posAxe, int minPosAxe, int maxPosAxe, int range) {
+        return RNG.nextInt(
+                Math.max(posAxe - range, minPosAxe + 1),
+                Math.min(posAxe + range, maxPosAxe + 1)
+        );
     }
 }

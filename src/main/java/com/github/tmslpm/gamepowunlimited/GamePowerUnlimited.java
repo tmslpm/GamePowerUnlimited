@@ -1,4 +1,4 @@
-package com.github.tmslpm.gamepowunlimited.base;
+package com.github.tmslpm.gamepowunlimited;
 
 import com.github.tmslpm.gamepowunlimited.enums.AnsiColor;
 import com.github.tmslpm.gamepowunlimited.enums.Direction;
@@ -7,7 +7,6 @@ import com.github.tmslpm.gamepowunlimited.enums.PieceType;
 import com.github.tmslpm.gamepowunlimited.players.Player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -100,6 +99,16 @@ public class GamePowerUnlimited {
                         ? PieceType.BARRIER : PieceType.EMPTY;
     }
 
+    public void playRound() {
+        // get the player for the current round
+        Player currentPlayer = this.getCurrentPlayer();
+        // insert new piece (if possible or do nothing)
+        this.onTryInsertPiece(currentPlayer);
+        GameState gamestate = this.checkGameState();
+        this.onRender(gamestate);
+        this.onGameState(gamestate);
+    }
+
     /**
      * Check game status, control game stages
      * <ul>
@@ -149,7 +158,7 @@ public class GamePowerUnlimited {
             iPosX += dir.getX();
             iPosY += dir.getY();
             // check if same piece and increment combo counter
-            if (this.isPieceAt(iPosX, iPosY, pieceType)) {
+            if (!pieceType.equals(PieceType.EMPTY) && !pieceType.equals(PieceType.BARRIER) && this.isPieceAt(iPosX, iPosY, pieceType)) {
                 if (++countCombo >= this.comboLength)
                     return true;
             } else {
@@ -220,6 +229,58 @@ public class GamePowerUnlimited {
         return false;
     }
 
+    // E v e n t s
+
+    public void onGameState(GameState gamestate) {
+        switch (gamestate) {
+            case WIN:
+                this.onWin();
+                this.resetGame();
+                break;
+            case TIE:
+                this.onTie();
+                this.resetGame();
+                break;
+            case PLAY:
+            default:
+                this.onPlay();
+                break;
+        }
+    }
+
+    /**
+     * Event executed on game rendered
+     */
+    public void onRender(GameState gamestate) {
+
+    }
+
+    /**
+     * Event executed on game play
+     */
+    public void onPlay() {};
+
+    /**
+     * Event executed on game tie
+     */
+    public void onTie() {};
+
+    /**
+     * Event executed on game win
+     */
+    public void onWin() {};
+
+    /**
+     * Event executed on try insert piece with position received from the player
+     * @param currentPlayer Player - current player for this current game round
+     */
+    protected void onTryInsertPiece(Player currentPlayer) {
+        if (!this.insertPieces(currentPlayer.getPosition(this.getYLength()), currentPlayer.getType()))
+            this.onTryInsertPiece(currentPlayer);
+    }
+
+    // U t i l s
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder().append("GamePowerUnlimited { grid =");
@@ -257,7 +318,6 @@ public class GamePowerUnlimited {
                 "\n }";
 
     }
-
 
     // G e t t e r / S e t t e r
 

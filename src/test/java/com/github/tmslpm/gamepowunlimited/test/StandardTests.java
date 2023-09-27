@@ -1,10 +1,8 @@
 package com.github.tmslpm.gamepowunlimited.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-
 import org.junit.jupiter.api.*;
 
+@Disabled("for demonstration purposes")
 class StandardTests {
 
     @BeforeAll
