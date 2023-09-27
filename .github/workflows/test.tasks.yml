@@ -1,0 +1,16 @@
+name: test
+run-name: ${{ github.actor }} - build
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - if: startsWith(github.event.issue.title, 'gpu')
+        run: echo ======================== 1 ==========================
+      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_1')
+        run: echo ======================== 1.1 ==========================
