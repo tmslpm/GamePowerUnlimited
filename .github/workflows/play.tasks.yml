@@ -14,5 +14,7 @@ jobs:
           architecture: x64
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2.8.1
+      - name: Make gradlew executable on github action (or perm denied)
+        run: chmod +x ./gradlew
       - name: Execute Gradle build
         run: ./gradlew build
