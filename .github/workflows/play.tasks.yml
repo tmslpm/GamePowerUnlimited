@@ -1,8 +1,8 @@
 name: run game Y 1
 run-name: ${{ github.actor }} - build
-
-on: workflow_dispatch
-
+on:
+  issues:
+    types: [opened]
 jobs:
   build:
     runs-on: ubuntu-latest
