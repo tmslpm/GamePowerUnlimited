@@ -17,4 +17,4 @@ jobs:
       - name: Make gradlew executable on github action (or perm denied)
         run: chmod +x ./gradlew
       - name: Execute Gradle build
-        run: ./gradlew build
+        run: ./gradlew run --args="action_github position_5"

@@ -1,9 +1,21 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'com.github.tmslpm.gamepowunlimited'
 version = '1.0'
+
+// gradlew run --args="action_github position_1"
+run {
+    // args = ["action_github", "position_1"]
+    args = []
+}
+
+application {
+    applicationName= "GamePowerUnlimited"
+    mainClass = 'com.github.tmslpm.gamepowunlimited.Main'
+}
 
 repositories {
     mavenCentral()
@@ -21,3 +33,4 @@ test {
         events "passed", "skipped", "failed", "standardOut", "standardError"
     }
 }
+

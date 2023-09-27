@@ -1,0 +1,20 @@
+name: play game power unlimited
+run-name: ${{ github.actor }} - build
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          architecture: x64
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2.8.1
+      - name: Make gradlew executable on github action (or perm denied)
+        run: chmod +x ./gradlew
+      - name: Execute Gradle build
+        run: ./gradlew run --args="action_github position_7"
