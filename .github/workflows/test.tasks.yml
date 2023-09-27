@@ -1,6 +1,6 @@
 name: test
 run-name: ${{ github.actor }} - build
- 
+
 on: workflow_dispatch
 
 jobs:

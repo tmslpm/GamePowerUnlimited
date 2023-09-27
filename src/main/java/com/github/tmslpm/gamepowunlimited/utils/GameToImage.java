@@ -11,9 +11,10 @@ import java.io.IOException;
 
 public interface GameToImage {
 
+
     Color BORDER_COLOR = new Color(45, 45, 45);
 
-    static void generate(GamePowerUnlimited game, int cellSize) {
+    static void generate(GamePowerUnlimited game, int cellSize, String pathname) {
 
        // BufferedImage buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
@@ -22,7 +23,7 @@ public interface GameToImage {
         renderingHints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
         BufferedImage gridBuffer = GameToImage.generateGrid(game, cellSize, renderingHints);
-        BufferedImage colIdBuffer = GameToImage.generateHeader(game, renderingHints, gridBuffer.getWidth());
+        BufferedImage colIdBuffer = GameToImage.generateHeader(renderingHints, gridBuffer.getWidth());
 
         /////////////////:
 
@@ -32,13 +33,13 @@ public interface GameToImage {
         graphics.drawImage(gridBuffer,0 , colIdBuffer.getHeight(), null);
 
         try {
-            ImageIO.write(merged, "png", new File("CustomImage.png"));
+            ImageIO.write(merged, "png", new File(pathname));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static BufferedImage generateHeader(GamePowerUnlimited game, RenderingHints renderingHints, int width) {
+    private static BufferedImage generateHeader(RenderingHints renderingHints, int width) {
         int height = 82;
         BufferedImage buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = buffer.createGraphics();

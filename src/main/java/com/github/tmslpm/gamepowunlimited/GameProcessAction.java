@@ -6,12 +6,7 @@ import com.github.tmslpm.gamepowunlimited.players.Player;
 import com.github.tmslpm.gamepowunlimited.players.PlayerIA;
 import com.github.tmslpm.gamepowunlimited.utils.GameToImage;
 import com.github.tmslpm.gamepowunlimited.utils.HelperJSON;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -73,7 +68,7 @@ public class GameProcessAction extends GamePowerUnlimited {
         // Serialize data
         HelperJSON.toFile(PATH_OUT_JSON, game);
         // Generate image
-        GameToImage.generate(game, 64);
+        GameToImage.generate(game, 64, "CustomImage.png");
     }
 
 }

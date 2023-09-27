@@ -25,7 +25,7 @@ class GenerateGameToImageTests {
                 /*13*/{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
         });
 
-        GameToImage.generate(g, 64);
+        GameToImage.generate(g, 64, "out/game_to_image.test.png");
     }
 
     private static GamePowerUnlimited getGame(int[][] fake_data) {
