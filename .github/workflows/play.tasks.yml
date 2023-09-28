@@ -22,25 +22,25 @@ jobs:
       - name: Make gradlew executable on github action (or perm denied)
         run: chmod +x ./gradlew
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_1')
+      - if: startsWith(github.event.issue.title, 'gpu pos_1')
         run: ./gradlew run --args="action_github position_1"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_2')
+      - if: startsWith(github.event.issue.title, 'gpu pos_2')
         run: ./gradlew run --args="action_github position_2"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_3')
+      - if: startsWith(github.event.issue.title, 'gpu pos_3')
         run: ./gradlew run --args="action_github position_3"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_4')
+      - if: startsWith(github.event.issue.title, 'gpu pos_4')
         run: ./gradlew run --args="action_github position_4"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_5')
+      - if: startsWith(github.event.issue.title, 'gpu pos_5')
         run: ./gradlew run --args="action_github position_5"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_6')
+      - if: startsWith(github.event.issue.title, 'gpu pos_6'
         run: ./gradlew run --args="action_github position_6"
 
-      - if: startsWith(github.event.issue.title, 'gpu') && contains(github.event.issue.labels.*.name, 'pos_7')
+      - if: startsWith(github.event.issue.title, 'gpu pos_7')
         run: ./gradlew run --args="action_github position_7"
 
       - name: Make Github commit
