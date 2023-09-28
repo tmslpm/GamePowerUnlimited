@@ -12,13 +12,13 @@
 1.0) Open issue on this repos
 
 1.1) Set the title with:
-- `gpu pos_1` or
-- `gpu pos_2` or
-- `gpu pos_3` or
-- `gpu pos_4` or
-- `gpu pos_5` or
-- `gpu pos_6` or
-- `gpu pos_7`
+- `gpu-pos_1` or
+- `gpu-pos_2` or
+- `gpu-pos_3` or
+- `gpu-pos_4` or
+- `gpu-pos_5` or
+- `gpu-pos_6` or
+- `gpu-pos_7`
 
 Once the issue sent, the Github action will be executed to update the game after the action completed the new game image will be available in +- 5 minutes
 
