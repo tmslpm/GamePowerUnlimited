@@ -37,7 +37,7 @@ jobs:
       - if: startsWith(github.event.issue.title, 'gpu-pos_5')
         run: ./gradlew run --args="action_github position_5"
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_6'
+      - if: startsWith(github.event.issue.title, 'gpu-pos_6')
         run: ./gradlew run --args="action_github position_6"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_7')
