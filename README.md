@@ -15,7 +15,7 @@
 
 1.2) Add the label: pos_1, pos_2, pos_3, pos_4, pos_5, pos_6, pos_7
 
-Une fois l'issue envoyé, l'action Github sera exécutée pour mettre à jour le jeu après l'action terminée la nouvelle image du jeu sera disponible dans +- 5 minutes
+Once the issue sent, the Github action will be executed to update the game after the action completed the new game image will be available in +- 5 minutes
 
 ![image](https://github.com/tmslpm/GamePowerUnlimited/blob/main/example.png)
 
