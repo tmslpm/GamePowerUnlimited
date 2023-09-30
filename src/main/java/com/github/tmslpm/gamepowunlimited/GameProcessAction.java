@@ -80,7 +80,7 @@ public class GameProcessAction extends GamePowerUnlimited {
         GameToImage.generate(game, 64, path);
 
         StringBuilder readmeText = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader("gen/template/README.md", StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("gen/template/readme.md", StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null)
                 readmeText.append(line).append("\n");
