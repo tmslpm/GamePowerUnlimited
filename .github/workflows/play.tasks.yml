@@ -79,5 +79,5 @@ jobs:
 
         - name: Send result
           run: |
-            IMAGE_NAME="$(cat game_image_name.txt)"
+            IMAGE_NAME="$(cat gen/game_image_name.txt)"
             echo IMAGE_NAME
