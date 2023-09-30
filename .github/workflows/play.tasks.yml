@@ -9,7 +9,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
-        - run: gh issue comment ${{ github.event.issue.number }} -c "⏳ The game starts, please wait a few seconds, I'm a fast robot, don't worry!"
+        - run: gh issue comment ${{ github.event.issue.number }} -b "⏳ The game starts, please wait a few seconds, I'm a fast robot, don't worry!"
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             ISSUE: ${{ github.event.issue.html_url }}
@@ -44,7 +44,7 @@ jobs:
               ./gradlew run --args="action_github position_7"
             else
               UPDATE_GH=false
-              gh issue comment ${{ github.event.issue.number }} -c "❌ Your choice is invalid, the title must contain the word `pos_1` or `pos_2`, `pos_3`, `pos_4`, `pos_5`, `pos_6`, `pos_7`. I'm sorry, try again.."
+              gh issue comment ${{ github.event.issue.number }} -b "❌ Your choice is invalid, the title must contain the word `pos_1` or `pos_2`, `pos_3`, `pos_4`, `pos_5`, `pos_6`, `pos_7`. I'm sorry, try again.."
             fi
             if $UPDATE_GH then
               ./gradlew updateReadmeImage
