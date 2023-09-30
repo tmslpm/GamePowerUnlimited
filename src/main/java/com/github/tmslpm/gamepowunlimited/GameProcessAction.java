@@ -8,9 +8,13 @@ import com.github.tmslpm.gamepowunlimited.utils.GameToImage;
 import com.github.tmslpm.gamepowunlimited.utils.HelperFile;
 import com.github.tmslpm.gamepowunlimited.utils.HelperJSON;
 
+import java.io.*;
 import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 /**
  * - issue event
@@ -72,7 +76,28 @@ public class GameProcessAction extends GamePowerUnlimited {
         // Generate image
         String pathDirOutput = "gen";
         HelperFile.deleteFiles(Path.of(pathDirOutput), "game_to_image*{.png}");
-        GameToImage.generate(game, 64, GameProcessAction.createOutPathImage(pathDirOutput));
+        Path path = GameProcessAction.createOutPathImage(pathDirOutput);
+        GameToImage.generate(game, 64, path);
+
+        StringBuilder readmeText = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader("gen/template/README.md", StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null)
+                readmeText.append(line).append("\n");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (readmeText.length() <= 10) {
+            throw new RuntimeException("template readme empty/low data");
+        } else {
+            try (FileWriter writer = new FileWriter("README.md");) {
+                writer.write(readmeText.toString().replaceAll("\\{\\{IMG_PATH}}", path.getFileName().toString()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static Path createOutPathImage(String pathDir) {

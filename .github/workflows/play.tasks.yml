@@ -46,7 +46,7 @@ jobs:
 
         - name: Update readme
           run:  ./gradlew updateReadmeImage
-          
+
         - name: Make Github commit
           run: |
             git config --local user.email "github-actions[bot]@users.noreply.github.com"

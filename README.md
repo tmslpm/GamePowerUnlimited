@@ -1,8 +1,8 @@
 <div align="center"> 
 
-# 🎮 Game Power Unlimited 🎮
+# ? Game Power Unlimited ?
 
-<img src="https://github.com/tmslpm/GamePowerUnlimited/blob/main/gen/game_to_image1696041206.png" alt="game power 4">
+<img src="https://github.com/tmslpm/GamePowerUnlimited/blob/main/gen/game_to_image1696046641.png" alt="game power 4">
 
 </div>
 
@@ -27,4 +27,4 @@ Once the issue sent, the Github action will be executed to update the game after
 <br>
 <br>
 
-<pre align=center>↑↑↑ <a href="#-game-power-unlimited-" title="click to scroll up" alt="click to scroll up">BACK TO TOP</a> ↑↑↑</pre>
+<pre align=center>??? <a href="#-game-power-unlimited-" title="click to scroll up" alt="click to scroll up">BACK TO TOP</a> ???</pre>
