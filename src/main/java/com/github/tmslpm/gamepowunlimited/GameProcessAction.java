@@ -5,8 +5,10 @@ import com.github.tmslpm.gamepowunlimited.enums.PieceType;
 import com.github.tmslpm.gamepowunlimited.players.Player;
 import com.github.tmslpm.gamepowunlimited.players.PlayerIA;
 import com.github.tmslpm.gamepowunlimited.utils.GameToImage;
+import com.github.tmslpm.gamepowunlimited.utils.HelperFile;
 import com.github.tmslpm.gamepowunlimited.utils.HelperJSON;
 
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -68,7 +70,12 @@ public class GameProcessAction extends GamePowerUnlimited {
         // Serialize data
         HelperJSON.toFile(PATH_OUT_JSON, game);
         // Generate image
-        GameToImage.generate(game, 64, "CustomImage.png");
+        String pathDirOutput = "gen";
+        HelperFile.deleteFiles(Path.of(pathDirOutput), "game_to_image*{.png}");
+        GameToImage.generate(game, 64, GameProcessAction.createOutPathImage(pathDirOutput));
     }
 
+    public static Path createOutPathImage(String pathDir) {
+        return Path.of(pathDir, HelperFile.createUniqueName("game_to_image", 1)[0] + ".png");
+    }
 }

@@ -38,10 +38,5 @@ public class HelperJSON {
         }
     }
 
-    public static boolean contains() {
-
-        return false;
-    }
-
 }
 

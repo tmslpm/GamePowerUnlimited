@@ -8,15 +8,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.time.Instant;
 
 public interface GameToImage {
 
-
     Color BORDER_COLOR = new Color(45, 45, 45);
 
-    static void generate(GamePowerUnlimited game, int cellSize, String pathname) {
 
-       // BufferedImage buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+    static void generate(GamePowerUnlimited game, int cellSize, Path pathName) {
+        // BufferedImage buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         // enable anti aliasing
         RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -33,7 +35,7 @@ public interface GameToImage {
         graphics.drawImage(gridBuffer,0 , colIdBuffer.getHeight(), null);
 
         try {
-            ImageIO.write(merged, "png", new File(pathname));
+            ImageIO.write(merged, "png", new File(pathName.toUri()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

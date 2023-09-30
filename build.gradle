@@ -8,8 +8,8 @@ version = '1.0'
 
 // gradlew run --args="action_github position_1"
 run {
-    // args = ["action_github", "position_1"]
-    args = []
+    args = ["action_github", "position_1"]
+    //args = []
 }
 
 application {
@@ -31,6 +31,32 @@ test {
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+
+tasks.register('runGithubAction') {
+    group = "application"
+    dependsOn(run)
+    finalizedBy(updateReadmeImage)
+    doLast { println "execute from github action" }
+}
+
+tasks.register('updateReadmeImage') {
+    group = "build"
+    doLast {
+        def result = file("gen").listFiles().toList().stream()
+                .filter { it.name.endsWith(".png") && it.name.startsWith("game_to_image") }
+                .sorted { a, b -> a.lastModified() > b.lastModified() ? 1 : a.lastModified() < b.lastModified() ? -1 : 0 }
+                .toList()
+                .last()
+        copy {
+            from("gen/template") include "*.md"
+            // Have to use a new path for modified files
+            into(".")
+            filter {
+                String line -> line.replaceAll("\\{\\{IMG_PATH}}", result.name)
+            }
+        }
     }
 }
 

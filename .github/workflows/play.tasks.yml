@@ -23,25 +23,25 @@ jobs:
         run: chmod +x ./gradlew
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_1')
-        run: ./gradlew run --args="action_github position_1"
+        run: ./gradlew runGithubAction --args="action_github position_1"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_2')
-        run: ./gradlew run --args="action_github position_2"
+        run: ./gradlew runGithubAction --args="action_github position_2"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_3')
-        run: ./gradlew run --args="action_github position_3"
+        run: ./gradlew runGithubAction --args="action_github position_3"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_4')
-        run: ./gradlew run --args="action_github position_4"
+        run: ./gradlew runGithubAction --args="action_github position_4"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_5')
-        run: ./gradlew run --args="action_github position_5"
+        run: ./gradlew runGithubAction --args="action_github position_5"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_6')
-        run: ./gradlew run --args="action_github position_6"
+        run: ./gradlew runGithubAction --args="action_github position_6"
 
       - if: startsWith(github.event.issue.title, 'gpu-pos_7')
-        run: ./gradlew run --args="action_github position_7"
+        run: ./gradlew runGithubAction --args="action_github position_7"
 
       - name: Make Github commit
         run: |
@@ -54,3 +54,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+
+      - run: gh issue close ${{ github.event.issue.url }} -c "Thank you for your participation! The game will be updated in the next few minutes."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ github.event.issue.html_url }}

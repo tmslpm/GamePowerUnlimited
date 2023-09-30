@@ -29,14 +29,6 @@ public class Player {
         return posY;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public int getScore() {
-        return this.score;
-    }
-
     public PieceType getType() {
         return this.type;
     }

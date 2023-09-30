@@ -44,10 +44,21 @@ public class PlayerIA extends Player {
 
     public static int getRandomPosition(GamePowerUnlimited game) {
         int lastPosY = game.getLastPositionPieceAddedY() - game.getComboLength();
+
+        System.out.println(lastPosY);
         //int precision = this.getScore() * 2;
         final int minAxeY = 1;
         final int maxAxeY = game.getYLength();
-        return getRandomPositionFromOtherPos(lastPosY, minAxeY, maxAxeY, 3);
+
+        if (!game.isPieceAt(game.getComboLength(), lastPosY, PieceType.EMPTY)) {
+            int y;
+            do {
+                 y = RNG.nextInt(minAxeY, maxAxeY);
+            } while (game.isPieceAt(game.getComboLength(), y, PieceType.EMPTY) );
+            return y;
+        } else {
+            return getRandomPositionFromOtherPos(lastPosY, minAxeY, maxAxeY, 3);
+        }
     }
 
     protected static int getRandomPositionFromOtherPos(int posAxe, int minPosAxe, int maxPosAxe, int range) {

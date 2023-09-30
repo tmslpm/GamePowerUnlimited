@@ -2,7 +2,7 @@
 
 # 🎮 Game Power Unlimited 🎮
 
-<img src="https://github.com/tmslpm/GamePowerUnlimited/blob/main/gen/game_to_image1696041206.png" alt="game power 4">
+<img src="https://github.com/tmslpm/GamePowerUnlimited/blob/main/gen/{{IMG_PATH}}" alt="game power 4">
 
 </div>
 

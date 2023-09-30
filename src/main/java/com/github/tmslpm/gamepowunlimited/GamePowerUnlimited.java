@@ -403,7 +403,10 @@ public class GamePowerUnlimited {
     public int getLastPositionPieceAddedY() {
         return this.lastPositionPieceAddedY;
     }
-
+    /** @return int {@link GamePowerUnlimited#lastPositionPieceAddedX} */
+    public int getLastPositionPieceAddedX() {
+        return this.lastPositionPieceAddedX;
+    }
     /** @return int {@link GamePowerUnlimited#totalPiecesAdded} */
     public int getTotalPiecesAdded() {
         return this.totalPiecesAdded;
