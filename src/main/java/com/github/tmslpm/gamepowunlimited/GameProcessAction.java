@@ -73,34 +73,42 @@ public class GameProcessAction extends GamePowerUnlimited {
 
         // Serialize data
         HelperJSON.toFile(PATH_OUT_JSON, game);
+
         // Generate image
         String pathDirOutput = "gen";
         HelperFile.deleteFiles(Path.of(pathDirOutput), "game_to_image*{.png}");
         Path path = GameProcessAction.createOutPathImage(pathDirOutput);
         GameToImage.generate(game, 64, path);
 
+        // Get readme template
         StringBuilder readmeText = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader("gen/template/readme.md", StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null)
                 readmeText.append(line).append("\n");
-
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
 
-        if (readmeText.length() <= 10) {
+        if (readmeText.length() <= 10)
             throw new RuntimeException("template readme empty/low data");
-        } else {
-            try (FileWriter writer = new FileWriter("README.md");) {
-                writer.write(readmeText.toString().replaceAll("\\{\\{IMG_PATH}}", path.getFileName().toString()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
+        // update readme
+        writeFile("README.md", readmeText.toString().replaceAll("\\{\\{IMG_PATH}}", path.getFileName().toString()));
+        // store image name
+        writeFile("gen/game_image_name.txt", path.getFileName().toString());
     }
 
     public static Path createOutPathImage(String pathDir) {
         return Path.of(pathDir, HelperFile.createUniqueName("game_to_image", 1)[0] + ".png");
+    }
+
+    private static void writeFile(String fileName, String data) {
+        try (FileWriter writer = new FileWriter(fileName);) {
+            writer.write(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
