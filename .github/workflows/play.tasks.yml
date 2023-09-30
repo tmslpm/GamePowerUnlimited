@@ -29,20 +29,20 @@ jobs:
             chmod +x ./gradlew 
             UPDATE_GH=true
             TITLE_ISSUE="${{github.event.issue.title}}"
-            if [ "$TITLE_ISSUE" == *"pos_"* ]; then
-              if [ "$TITLE_ISSUE" == *"pos_1"* ]; then
+            if [[ "$TITLE_ISSUE" == *"pos_"* ]]; then
+              if [[ "$TITLE_ISSUE" == *"pos_1"* ]]; then
                 ./gradlew run --args="action_github position_1"
-              elif [ "$TITLE_ISSUE" == *"pos_2"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_2"* ]]; then
                 ./gradlew run --args="action_github position_2"
-              elif [ "$TITLE_ISSUE" == *"pos_3"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_3"* ]]; then
                 ./gradlew run --args="action_github position_3"
-              elif [ "$TITLE_ISSUE" == *"pos_4"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_4"* ]]; then
                 ./gradlew run --args="action_github position_4"
-              elif [ "$TITLE_ISSUE" == *"pos_5"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_5"* ]]; then
                 ./gradlew run --args="action_github position_5"
-              elif [ "$TITLE_ISSUE" == *"pos_6"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_6"* ]]; then
                 ./gradlew run --args="action_github position_6"
-              elif [ "$TITLE_ISSUE" == *"pos_7"* ]; then
+              elif [[ "$TITLE_ISSUE" == *"pos_7"* ]]; then
                 ./gradlew run --args="action_github position_7"
               else
                 UPDATE_GH=false
