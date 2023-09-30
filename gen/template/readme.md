@@ -20,7 +20,7 @@
 - `gpu-pos_6` or
 - `gpu-pos_7`
 
-Once the issue sent, the Github action will be executed to update the game after the action completed the new game image will be available in +- 5 minutes
+Once the issue sent, the Github action will be executed to update the game after the action completed the new game image will be available in few minutes
 
 ![image](https://github.com/tmslpm/GamePowerUnlimited/blob/main/gen/template/example.png)
 
