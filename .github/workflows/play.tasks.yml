@@ -4,8 +4,8 @@ on:
   issues:
     types: [opened]
 jobs:
-  - if: contains(github.event.issue.title, 'gpu')
     build:
+      if: contains(github.event.issue.title, 'gpu')
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
