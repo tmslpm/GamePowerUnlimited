@@ -26,33 +26,40 @@ jobs:
 
         - name: Make gradlew executable on github action (or perm denied) and executed the game
           run: |
-            chmod +x ./gradlew
+            chmod +x ./gradlew 
             UPDATE_GH=true
-            if [ ${{contains(github.event.issue.title, 'pos_1')}} ]; then
-              ./gradlew run --args="action_github position_1"
-            elif [ ${{contains(github.event.issue.title, 'pos_2')}} ]; then
-              ./gradlew run --args="action_github position_2"
-            elif [ ${{contains(github.event.issue.title, 'pos_3')}} ]; then
-              ./gradlew run --args="action_github position_3"
-            elif [ ${{contains(github.event.issue.title, 'pos_4')}} ]; then
-              ./gradlew run --args="action_github position_4"
-            elif [ ${{contains(github.event.issue.title, 'pos_5')}} ]; then
-              ./gradlew run --args="action_github position_5"
-            elif [ ${{contains(github.event.issue.title, 'pos_6')}} ]; then
-              ./gradlew run --args="action_github position_6"
-            elif [ ${{contains(github.event.issue.title, 'pos_7')}} ]; then
-              ./gradlew run --args="action_github position_7"
+            TITLE_ISSUE=${{github.event.issue.title}}
+            if [ "$TITLE_ISSUE" == *"pos_"* ]; then
+              if [ "$TITLE_ISSUE" == *"pos_1"* ]; then
+                ./gradlew run --args="action_github position_1"
+              elif [ "$TITLE_ISSUE" == *"pos_2"* ]; then
+                ./gradlew run --args="action_github position_2"
+              elif [ "$TITLE_ISSUE" == *"pos_3"* ]; then
+                ./gradlew run --args="action_github position_3"
+              elif [ "$TITLE_ISSUE" == *"pos_4"* ]; then
+                ./gradlew run --args="action_github position_4"
+              elif [ "$TITLE_ISSUE" == *"pos_5"* ]; then
+                ./gradlew run --args="action_github position_5"
+              elif [ "$TITLE_ISSUE" == *"pos_6"* ]; then
+                ./gradlew run --args="action_github position_6"
+              elif [ "$TITLE_ISSUE" == *"pos_7"* ]; then
+                ./gradlew run --args="action_github position_7"
+              else
+                UPDATE_GH=false
+                gh issue comment ${{ github.event.issue.number }} -b "❌ Your choice is invalid, the title must contain the word `pos_1` or `pos_2`, `pos_3`, `pos_4`, `pos_5`, `pos_6`, `pos_7`. I'm sorry, try again.."
+              fi
             else
               UPDATE_GH=false
               gh issue comment ${{ github.event.issue.number }} -b "❌ Your choice is invalid, the title must contain the word `pos_1` or `pos_2`, `pos_3`, `pos_4`, `pos_5`, `pos_6`, `pos_7`. I'm sorry, try again.."
             fi
+            
             if [ $UPDATE_GH ]; then
               ./gradlew updateReadmeImage
               git config --local user.email "github-actions[bot]@users.noreply.github.com"
               git config --local user.name "github-actions[bot]"
               git add .
               git commit -m "update dist after build (github-actions)"
-              gh issue close ${{ github.event.issue.number }} -c "✅ Thanks for participating, the image generation is in progress, refresh the readme after a few minute!"
+              gh issue close ${{ github.event.issue.number }} -c "✅ Thanks for participating, the image generation is in progress, refresh the readme after a few minute!<h1>🔗<a href='https://github.com/tmslpm/GamePowerUnlimited#-game-power-unlimited-' title='Click here to go on readme'>GO TO README</a></h1>"
             else
               gh issue close ${{ github.event.issue.number }} -c "⛔ Failled.. you can try again if you wish, open a new isssues with the tile."
             fi 
