@@ -28,7 +28,7 @@ jobs:
           run: |
             chmod +x ./gradlew 
             UPDATE_GH=true
-            TITLE_ISSUE=${{github.event.issue.title}}
+            TITLE_ISSUE="${{github.event.issue.title}}"
             if [ "$TITLE_ISSUE" == *"pos_"* ]; then
               if [ "$TITLE_ISSUE" == *"pos_1"* ]; then
                 ./gradlew run --args="action_github position_1"
