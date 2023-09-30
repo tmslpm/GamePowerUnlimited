@@ -3,6 +3,11 @@ package com.github.tmslpm.gamepowunlimited.players;
 import com.github.tmslpm.gamepowunlimited.Main;
 import com.github.tmslpm.gamepowunlimited.enums.PieceType;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class Player {
     private static int UNIQUE_ID_GEN = 0;
     private final int id;
@@ -26,6 +31,8 @@ public class Player {
                 posY = 0;
             }
         } while (!(posY > 0 && posY <= maxY));
+
+
         return posY;
     }
 

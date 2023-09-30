@@ -9,7 +9,8 @@ version = '1.0'
 // gradlew run --args="action_github position_1"
 run {
     args = ["action_github", "position_1"]
-    //args = []
+    //t
+    // =:tzargs = []
 }
 
 application {
@@ -37,11 +38,15 @@ test {
 tasks.register('updateReadmeImage') {
     group = "build"
     doLast {
-        def result = file("gen").listFiles().toList().stream()
+        def result = file("gen")
+                .listFiles()
+                .toList()
+                .stream()
                 .filter { it.name.endsWith(".png") && it.name.startsWith("game_to_image") }
                 .sorted { a, b -> a.lastModified() > b.lastModified() ? 1 : a.lastModified() < b.lastModified() ? -1 : 0 }
                 .toList()
                 .last()
+
         copy {
             from("gen/template") include "*.md"
             // Have to use a new path for modified files
