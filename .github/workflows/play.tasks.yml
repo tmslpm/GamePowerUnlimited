@@ -46,7 +46,7 @@ jobs:
               UPDATE_GH=false
               gh issue comment ${{ github.event.issue.number }} -b "❌ Your choice is invalid, the title must contain the word `pos_1` or `pos_2`, `pos_3`, `pos_4`, `pos_5`, `pos_6`, `pos_7`. I'm sorry, try again.."
             fi
-            if [ $UPDATE_GH ] then
+            if [ $UPDATE_GH ]; then
               ./gradlew updateReadmeImage
               git config --local user.email "github-actions[bot]@users.noreply.github.com"
               git config --local user.name "github-actions[bot]"
