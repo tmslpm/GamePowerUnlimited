@@ -28,32 +28,32 @@ jobs:
             ./gradlew run --args="action_github position_1"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_2')
+        - if: contains(github.event.issue.title, 'pos_2')
           run: |
             ./gradlew run --args="action_github position_2"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_3')
+        - if: contains(github.event.issue.title, 'pos_3')
           run: |
             ./gradlew run --args="action_github position_3"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_4')
+        - if: contains(github.event.issue.title, 'pos_4')
           run: |
             ./gradlew run --args="action_github position_4"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_5')
+        - if: contains(github.event.issue.title, 'pos_5')
           run: |
             ./gradlew run --args="action_github position_5"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_6')
+        - if: contains(github.event.issue.title, 'pos_6')
           run: |
             ./gradlew run --args="action_github position_6"
             ./gradlew updateReadmeImage
 
-        - elif: contains(github.event.issue.title, 'pos_7')
+        - if: contains(github.event.issue.title, 'pos_7')
           run: |
             ./gradlew run --args="action_github position_7"
             ./gradlew updateReadmeImage
