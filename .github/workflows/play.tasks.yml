@@ -4,58 +4,72 @@ on:
   issues:
     types: [opened]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  - if: contains(github.event.issue.title, 'gpu')
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          architecture: x64
+        - name: Set up JDK
+          uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+            distribution: 'temurin'
+            architecture: x64
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2.8.1
+        - name: Setup Gradle
+          uses: gradle/gradle-build-action@v2.8.1
 
-      - name: Make gradlew executable on github action (or perm denied)
-        run: chmod +x ./gradlew
+        - name: Make gradlew executable on github action (or perm denied)
+          run: chmod +x ./gradlew
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_1')
-        run: ./gradlew runGithubAction --args="action_github position_1"
+        - if: contains(github.event.issue.title, 'pos_1')
+          run: |
+            ./gradlew run --args="action_github position_1"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_2')
-        run: ./gradlew runGithubAction --args="action_github position_2"
+        - elif: contains(github.event.issue.title, 'pos_2')
+          run: |
+            ./gradlew run --args="action_github position_2"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_3')
-        run: ./gradlew runGithubAction --args="action_github position_3"
+        - elif: contains(github.event.issue.title, 'pos_3')
+          run: |
+            ./gradlew run --args="action_github position_3"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_4')
-        run: ./gradlew runGithubAction --args="action_github position_4"
+        - elif: contains(github.event.issue.title, 'pos_4')
+          run: |
+            ./gradlew run --args="action_github position_4"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_5')
-        run: ./gradlew runGithubAction --args="action_github position_5"
+        - elif: contains(github.event.issue.title, 'pos_5')
+          run: |
+            ./gradlew run --args="action_github position_5"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_6')
-        run: ./gradlew runGithubAction --args="action_github position_6"
+        - elif: contains(github.event.issue.title, 'pos_6')
+          run: |
+            ./gradlew run --args="action_github position_6"
+            ./gradlew updateReadmeImage
 
-      - if: startsWith(github.event.issue.title, 'gpu-pos_7')
-        run: ./gradlew runGithubAction --args="action_github position_7"
+        - elif: contains(github.event.issue.title, 'pos_7')
+          run: |
+            ./gradlew run --args="action_github position_7"
+            ./gradlew updateReadmeImage
 
-      - name: Make Github commit
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "update dist after build (github-actions)"
-      - name: Make Github push
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-
-      - run: gh issue close ${{ github.event.issue.number }} -c "Thank you for opening this issue!"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.html_url }}
+        - name: Make Github commit
+          run: |
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add .
+            git commit -m "update dist after build (github-actions)"
+        - name: Make Github push
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: main
+        - run: gh issue close ${{ github.event.issue.number }} -c "Thanks for participating, the image generation is in progress, refresh the readme after a few minute!"
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ISSUE: ${{ github.event.issue.html_url }}

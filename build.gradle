@@ -8,8 +8,8 @@ version = '1.0'
 
 // gradlew run --args="action_github position_1"
 run {
-    args = ["action_github", "position_1"]
-    //args = []
+    //args = ["action_github", "position_1"]
+    args = []
 }
 
 application {
@@ -32,13 +32,6 @@ test {
     testLogging {
         events "passed", "skipped", "failed", "standardOut", "standardError"
     }
-}
-
-tasks.register('runGithubAction') {
-    group = "application"
-    dependsOn(run)
-    finalizedBy(updateReadmeImage)
-    doLast { println "execute from github action" }
 }
 
 tasks.register('updateReadmeImage') {
