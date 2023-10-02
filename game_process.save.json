@@ -1,8 +1,8 @@
 {
-  "counterRound": 12,
-  "totalPiecesAdded": 12,
-  "lastPositionPieceAddedX": 5,
-  "lastPositionPieceAddedY": 5,
+  "counterRound": 14,
+  "totalPiecesAdded": 14,
+  "lastPositionPieceAddedX": 9,
+  "lastPositionPieceAddedY": 8,
   "grid": [
     [
       "BARRIER",
@@ -78,7 +78,7 @@
       "BARRIER",
       "BARRIER",
       "EMPTY",
-      "EMPTY",
+      "YELLOW",
       "EMPTY",
       "EMPTY",
       "EMPTY",
@@ -166,7 +166,7 @@
       "RED",
       "RED",
       "YELLOW",
-      "EMPTY",
+      "RED",
       "EMPTY",
       "EMPTY",
       "BARRIER",
