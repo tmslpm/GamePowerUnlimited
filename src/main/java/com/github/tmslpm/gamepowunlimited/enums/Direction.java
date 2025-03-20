@@ -1,4 +1,7 @@
 package com.github.tmslpm.gamepowunlimited.enums;
+
+import org.jetbrains.annotations.Contract;
+
 /**
  * Direction points cardinal
  * <pre>
@@ -70,6 +73,7 @@ public enum Direction {
     private final int x;
     private final int y;
 
+    @Contract(pure = true)
     Direction(int x, int y) {
         this.x = x;
         this.y = y;

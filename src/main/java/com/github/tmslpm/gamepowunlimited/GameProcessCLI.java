@@ -13,7 +13,11 @@ public class GameProcessCLI extends GamePowerUnlimited {
         super(comboLength, xLength, yLength, registerInfoForIA);
 
         StringBuilder selectorDisplayYPso = new StringBuilder().append("|");
-        for (int i = 0; i < this.getYLength(); i++) selectorDisplayYPso.append(i + 1).append('|');
+
+        for (int i = 0; i < this.getYLength(); i++) {
+            selectorDisplayYPso.append(i + 1).append('|');
+        }
+
         this.selectorStr = selectorDisplayYPso + "\n" + "-".repeat(selectorDisplayYPso.length());
     }
 

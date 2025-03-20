@@ -11,8 +11,6 @@ public enum PieceType {
     BARRIER(" ", Color.BLACK), // don't move, the test use this index 1 = BARRIER
     RED(AnsiColor.RED.apply("O"), new Color(255, 69, 69)), // don't move, the test use this  index 2 = RED
     YELLOW(AnsiColor.YELLOW.apply("O"), new Color(239, 195, 0)), // don't move, the test use this index 3 = YELLOW
-
-    // OTHER PIECE IS NOT USED IN TEST
     MAGENTA(AnsiColor.MAGENTA.apply("O"), Color.MAGENTA),
     BLACK(AnsiColor.BLACK.apply("O"), Color.BLACK),
     BLUE(AnsiColor.BLUE.apply("O"), Color.BLUE),

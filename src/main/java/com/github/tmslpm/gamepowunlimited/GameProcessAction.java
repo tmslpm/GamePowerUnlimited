@@ -8,13 +8,13 @@ import com.github.tmslpm.gamepowunlimited.utils.GameToImage;
 import com.github.tmslpm.gamepowunlimited.utils.HelperFile;
 import com.github.tmslpm.gamepowunlimited.utils.HelperJSON;
 
-import java.io.*;
-import java.net.URI;
-import java.nio.charset.Charset;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 /**
  * - issue event
@@ -55,14 +55,14 @@ public class GameProcessAction extends GamePowerUnlimited {
             game = HelperJSON.fromFile(PATH_OUT_JSON, GameProcessAction.class);
         }
 
-        // insert piece for the visitor
+        // insert a piece for the visitor
         boolean visitorInsertIsSuccess = game.insertPieces(y, PieceType.YELLOW);
         if (visitorInsertIsSuccess) {
             // check if player win
             final GameState stateAfterVisitorPlay = game.checkGameState();
             // dispatch event
             game.onGameState(stateAfterVisitorPlay);
-            // IA play only if is GameState.PLAY, not after TIE,WIN...
+            // IA play only if is GameState.PLAY, not after TIE, WIN...
             if (GameState.PLAY.equals(stateAfterVisitorPlay)) {
                 // insert piece for the IA
                 game.insertPieces(PlayerIA.getRandomPosition(game), PieceType.RED);
@@ -84,8 +84,9 @@ public class GameProcessAction extends GamePowerUnlimited {
         StringBuilder readmeText = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader("gen/template/readme.md", StandardCharsets.UTF_8))) {
             String line;
-            while ((line = reader.readLine()) != null)
+            while ((line = reader.readLine()) != null) {
                 readmeText.append(line).append("\n");
+            }
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e.getMessage());

@@ -1,61 +1,75 @@
 plugins {
-    id 'java'
-    id 'application'
+  id 'java'
+  id 'application'
+  alias libs.plugins.gradle.plugin.publish
+  alias libs.plugins.cadixdev.licenser
 }
 
 group = 'com.github.tmslpm.gamepowunlimited'
-version = '1.0'
+version = '1.0.1'
 
 // gradlew run --args="action_github position_1"
 run {
-    //args = ["action_github", "position_1"]
-    //t
-    args = []
+  //args = ["action_github", "position_1"]
+  //t
+  args = []
 }
 
 application {
-    applicationName= "GamePowerUnlimited"
-    mainClass = 'com.github.tmslpm.gamepowunlimited.Main'
+  applicationName= "GamePowerUnlimited"
+  mainClass = 'com.github.tmslpm.gamepowunlimited.Main'
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'com.google.code.gson:gson:2.10.1'
+  implementation libs.jetbrains.annotations
+  testImplementation libs.bundles.junit
+  testRuntimeOnly libs.junit.jupiter.engine
+  testImplementation libs.bundles.mockito
+  implementation libs.google.gson
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(libs.versions.javaToolchainVersion.get())
+  }
+  sourceCompatibility = libs.versions.javaTargetCompatibility.get()
+}
+
+tasks.withType(JavaCompile).configureEach {
+  it.options.encoding = 'UTF-8'
+  it.options.release.set(libs.versions.javaTargetCompatibility.get().toInteger())
 }
 
 test {
-    useJUnitPlatform()
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-    }
+  useJUnitPlatform()
+  testLogging {
+    events "passed", "skipped", "failed", "standardOut", "standardError"
+  }
 }
 
 tasks.register('updateReadmeImage') {
-    group = "build"
-    doLast {
-        def result = file("gen")
-                .listFiles()
-                .toList()
-                .stream()
-                .filter { it.name.endsWith(".png") && it.name.startsWith("game_to_image") }
-                .sorted { a, b -> a.lastModified() > b.lastModified() ? 1 : a.lastModified() < b.lastModified() ? -1 : 0 }
-                .toList()
-                .last()
+  group = "build"
+  doLast {
+    def result = file("gen")
+      .listFiles()
+      .toList()
+      .stream()
+      .filter { it.name.endsWith(".png") && it.name.startsWith("game_to_image") }
+      .sorted { a, b -> a.lastModified() > b.lastModified() ? 1 : a.lastModified() < b.lastModified() ? -1 : 0 }
+      .toList()
+      .last()
 
-        copy {
-            from("gen/template") include "*.md"
-            // Have to use a new path for modified files
-            into(".")
-            filter {
-                String line -> line.replaceAll("\\{\\{IMG_PATH}}", result.name)
-            }
-        }
+    copy {
+      from("gen/template") include "*.md"
+      // Have to use a new path for modified files
+      into(".")
+      filter {
+        String line -> line.replaceAll("\\{\\{IMG_PATH}}", result.name)
+      }
     }
+  }
 }
-
-

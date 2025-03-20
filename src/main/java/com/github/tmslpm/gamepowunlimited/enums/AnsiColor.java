@@ -1,5 +1,8 @@
 package com.github.tmslpm.gamepowunlimited.enums;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * <pre><code>
  * int i, j, n;
@@ -36,16 +39,19 @@ public enum AnsiColor {
 
     private final String str;
 
+    @Contract(pure = true)
     AnsiColor(String s) {
         this.str = s;
     }
 
+    @Contract(pure = true)
     @Override
     public String toString() {
         return this.str;
     }
 
-    public String apply(String str) {
+    @Contract(pure = true)
+    public @NotNull String apply(String str) {
         return this.str + str + AnsiColor.RESET;
     }
 

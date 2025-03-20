@@ -34,6 +34,7 @@ public class PlayerIA extends Player {
      * | | | |0|8| | |
      * | | |0|8|0| | |
      * | |0|8|8|0| | |
+     *
      * @param maxY - the maximum length for the axe Y
      * @return int position Y generated with precision or not
      */
