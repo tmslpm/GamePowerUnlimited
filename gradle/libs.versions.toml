@@ -14,7 +14,7 @@ junit_version = "5.12.1"                  # https://github.com/junit-team/junit5
 mockito_version = "5.+"                   # https://github.com/mockito/mockito
 cadixdev_licenser_version = "0.6.1"       # https://github.com/CadixDev/licenser
 gradle_plugin_publish_version = '1.3.1'   # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-google_gson_version = "2.10.1"            # https://github.com/google/gson
+google_gson_version = "2.12.1"            # https://github.com/google/gson
 
 [libraries] # Section Libraries ~ Maps aliases to GAV coordinates.
 jetbrains_annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains_annotations_version" }
