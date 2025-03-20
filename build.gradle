@@ -73,3 +73,7 @@ tasks.register('updateReadmeImage') {
     }
   }
 }
+
+license {
+  header = project.file('license.md')
+}
